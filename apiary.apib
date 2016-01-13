@@ -5,6 +5,45 @@ HOST: http://legit.app/
 
 Legit is a simple service for easy Atlas user verification via a unique user identifier.
 
+# Data Structures
+
+## User
++ id: 1 (number, required)
++ atlas_user_id: 1 (number, required)
++ country_id: 1 (number, required)
++ phone_number: +27848118111 (string, required)
++ verification_status: `unverified, awaiting verification, verified, blocked, failed` (enum, required)
+
+## Code
++ id: 1 (number, required)
++ user_id: 1 (number, required)
++ code: 1834 (string, required)
++ created_at: 2015-07-29 14:07:11 (date)
++ expired_at: 2015-07-29 14:07:11 (date)
+
+## Country
++ id: 1 (number, required)
++ country_code: `olxtz, olxug, olxgh, olxke, olxng, olxza` (enum, required)
++ api_key: someHashHere (string, required)
++ status: `enabled, disabled` (enum)
+
+## Queue
+
+## Error
++ id: 1 (number, required)
++ user_id: 1 (number, required)
++ phone_number: +27848118111 (string, required)
++ error_message: `Some error message for debug purposes` (string, required)
++ created_at: 2015-07-29 14:07:11 (date)
++ deleted_at: 2015-07-29 14:07:11 (date)
+
+## Log
++ id: 1 (number, required)
++ request: `Some request details for debug` (string, required)
++ response: `Some response details for debug` (string, required)
++ created_at: 2015-07-29 14:07:11 (date)
++ updated_at: 2015-07-29 14:07:11 (date)
+
 
 ## Code Resource [/code]
 
