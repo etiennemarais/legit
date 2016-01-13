@@ -9,6 +9,11 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
 ## Code Resource [/code]
 
 ### Sending a code [GET /code/send?phone_number=someNumber&atlas_user_id=101]
+
+To be able to verify a user's mobile number, we need to be able to send their phone number a code 
+that they can fill in to verify. This endpoint sends the code generated on the server to the user's 
+phone number.
+
 + Parameters
     + phone_number (string, required)
 
@@ -62,6 +67,10 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
         }
    
 ### Resending a code [GET /code/resend?phone_number=someNumber&atlas_user_id=101]
+
+Resending a code is an explicit endpoint that deals with resending a verification code and 
+deals with retries and responding to failres in sending, errors and network problems. 
+
 + Parameters
     + phone_number (string, required)
 
@@ -129,6 +138,9 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
 
 ### Checking if a user is verified [GET /user/check?phone_number=someNumber&atlas_user_id=101]
 
+The app needs to be able to check if a user is verified with a phone number and this endpoint enables
+the client to do that check.
+
 + Parameters
     + phone_number (string, required)
 
@@ -190,6 +202,10 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
         
 ### Verifying a user [PUT /user/verify]
 
+This endpoint accepts the verification code that was sent to the user's mobile phone and does the 
+action of verifying the user.
+
+
 + Request (application/json)
 
     + Headers
@@ -237,6 +253,8 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
         
 ### Blocking a user [PUT /user/block]
 
+This endpoint enables the moderation team or any client to block a user based on phone number.
+
 + Request (application/json)
 
     + Headers
@@ -283,6 +301,9 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
 ## Status Resource [/status]
 
 ### Fetching credits available [GET /status/credits]
+
+Returns the available credits and does the action of stating whether there is action required of 
+buying new credits if the threshold is below a certain point.
             
 + Request
 
