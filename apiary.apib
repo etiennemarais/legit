@@ -1,0 +1,313 @@
+FORMAT: 1A
+HOST: http://legit.app/
+
+# Legit
+
+Legit is a simple service for easy Atlas user verification via a unique user identifier.
+
+
+## Code Resource [/code]
+
+### Sending a code [GET /code/send?phone_number=someNumber&atlas_user_id=101]
++ Parameters
+    + phone_number (string, required)
+
+        `user_mobile` of the atlas user in the format +27848118111
+
+    + atlas_user_id (integer, required)
+
+        `user_id` of the atlas user
+
+        + Members
+            + `12345`
+            
++ Request
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "message": "Successfully sent verification code",
+            "data": {
+                "verification_status": "awaiting verification",
+                "expires_at": {
+                    "date": "2016-01-05 14:07:11.000000",
+                    "timezone_type": 3,
+                    "timezone": "UTC"
+                }
+            }
+        }
+ 
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (atlas_user_id|phone_number)"
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "status": 406,
+            "message": "This number is not valid",
+            "data": {
+                "required_format": "<required format for country>",
+                "phone_number": "+27848118111"
+            }
+        }
+   
+### Resending a code [GET /code/resend?phone_number=someNumber&atlas_user_id=101]
++ Parameters
+    + phone_number (string, required)
+
+        `user_mobile` of the atlas user in the format +27848118111
+
+    + atlas_user_id (integer, required)
+
+        `user_id` of the atlas user
+
+        + Members
+            + `12345`
+            
++ Request
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "message": "Successfully resent verification code",
+            "data": {
+                "verification_status": "awaiting verification",
+                "expires_at": {
+                    "date": "2016-01-05 14:07:11.000000",
+                    "timezone_type": 3,
+                    "timezone": "UTC"
+                }
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (atlas_user_id|phone_number)"
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "status": 406,
+            "message": "This number is not valid",
+            "data": {
+                "required_format": "<required format for country>",
+                "phone_number": "+27848118111"
+            }
+        }
+        
++ Response 412 (application/json)
+
+        {
+            "status": 412,
+            "message": "This number (has opted out|was delisted|etc.)",
+            "data": {
+                "verification_status": "failed",
+                "phone_number": "+27848118111"
+            }
+        }
+        
+## User Resource [/user]
+
+### Checking if a user is verified [GET /user/check?phone_number=someNumber&atlas_user_id=101]
+
++ Parameters
+    + phone_number (string, required)
+
+        `user_mobile` of the atlas user in the format +27848118111
+
+    + atlas_user_id (integer, required)
+
+        `user_id` of the atlas user
+
+        + Members
+            + `12345`
+            
++ Request
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "message": "User's phone number is verified",
+            "data": {
+                "atlas_user_id": 12345,
+                "phone_number": "+278118111"   
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (atlas_user_id|phone_number)"
+        }
+        
++ Response 403 (application/json)
+
+        {
+            "status": 403,
+            "message": "User's phone number is not verified",
+            "data": {
+                "atlas_user_id": 12345,
+                "phone_number": "+278118111"   
+            }
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "status": 406,
+            "message": "This number is not valid",
+            "data": {
+                "required_format": "<required format for country>",
+                "phone_number": "+27848118111"
+            }
+        }
+        
+### Verifying a user [PUT /user/verify]
+
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "atlas_user_id": 12345,
+                "phone_number": "+278118111",
+                "verification_code": "1061"
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "message": "User phone number verified",
+            "data": {
+                "atlas_user_id": 12345,
+                "phone_number": "+278118111",
+                "verification_status": "verified"
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (atlas_user_id|phone_number|verification_code)"
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "status": 406,
+            "message": "This number is not valid",
+            "data": {
+                "required_format": "<required format for country>",
+                "phone_number": "+27848118111"
+            }
+        }
+        
+### Blocking a user [PUT /user/block]
+
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "atlas_user_id": 12345,
+                "phone_number": "+278118111"
+            }
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "message": "User blocked",
+            "data": {
+                "atlas_user_id": 12345,
+                "phone_number": "+278118111"   
+            }
+        }
+        
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (atlas_user_id|phone_number)"
+        }
+        
++ Response 406 (application/json)
+
+        {
+            "status": 406,
+            "message": "This number is not valid",
+            "data": {
+                "required_format": "<required format for country>",
+                "phone_number": "+27848118111"
+            }
+        }
+        
+## Status Resource [/status]
+
+### Fetching credits available [GET /status/credits]
+            
++ Request
+
+    + Headers
+    
+            X-Auth-Token: <ADMIN_API_KEY>
+            
++ Response 200 (application/json)
+
+        {
+            "status": 200,
+            "message": "Credits available",
+            "data": {
+                "credits_available": 12345   
+            }
+        }
+        
++ Response 402 (application/json)
+
+        {
+            "status": 402,
+            "message": "No credits available or below specified threshold",
+            "data": {
+                "credits_available": 500,
+                "min_threshold": 1000
+            }
+        }
+
