@@ -45,9 +45,9 @@ Legit is a simple service for easy Atlas user verification via a unique user ide
 + updated_at: 2015-07-29 14:07:11 (date)
 
 
-## Code Resource [/code]
+# Code Resource [/code]
 
-### Sending a code [GET /code/send?phone_number=someNumber&atlas_user_id=101]
+## Sending a code [GET /code/send?phone_number=someNumber&atlas_user_id=101]
 
 To be able to verify a user's mobile number, we need to be able to send their phone number a code 
 that they can fill in to verify. This endpoint sends the code generated on the server to the user's 
@@ -112,7 +112,7 @@ phone number.
             "message": "Invalid API Key"
         }
    
-### Resending a code [GET /code/resend?phone_number=someNumber&atlas_user_id=101]
+## Resending a code [GET /code/resend?phone_number=someNumber&atlas_user_id=101]
 
 Resending a code is an explicit endpoint that deals with resending a verification code and 
 deals with retries and responding to failres in sending, errors and network problems. 
@@ -187,9 +187,9 @@ deals with retries and responding to failres in sending, errors and network prob
             "message": "Invalid API Key"
         }
         
-## User Resource [/user]
+# User Resource [/user]
 
-### Checking if a user is verified [GET /user/check?phone_number=someNumber&atlas_user_id=101]
+## Checking if a user is verified [GET /user/check?phone_number=someNumber&atlas_user_id=101]
 
 The app needs to be able to check if a user is verified with a phone number and this endpoint enables
 the client to do that check.
@@ -260,7 +260,7 @@ the client to do that check.
             "message": "Invalid API Key"
         }
         
-### Verifying a user [PUT /user/verify]
+## Verifying a user [PUT /user/verify]
 
 This endpoint accepts the verification code that was sent to the user's mobile phone and does the 
 action of verifying the user.
@@ -318,7 +318,7 @@ action of verifying the user.
             "message": "Invalid API Key"
         }
         
-### Blocking a user [PUT /user/block]
+## Blocking a user [PUT /user/block]
 
 This endpoint enables the moderation team or any client to block a user based on phone number.
 
@@ -372,9 +372,9 @@ This endpoint enables the moderation team or any client to block a user based on
             "message": "Invalid API Key"
         }
         
-## Status Resource [/status]
+# Status Resource [/status]
 
-### Fetching credits available [GET /status/credits]
+## Fetching credits available [GET /status/credits]
 
 Returns the available credits and does the action of stating whether there is action required of 
 buying new credits if the threshold is below a certain point.
