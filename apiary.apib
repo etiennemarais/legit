@@ -104,6 +104,13 @@ phone number.
                 "phone_number": "+27848118111"
             }
         }
+        
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
    
 ### Resending a code [GET /code/resend?phone_number=someNumber&atlas_user_id=101]
 
@@ -173,6 +180,13 @@ deals with retries and responding to failres in sending, errors and network prob
             }
         }
         
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+        
 ## User Resource [/user]
 
 ### Checking if a user is verified [GET /user/check?phone_number=someNumber&atlas_user_id=101]
@@ -238,6 +252,13 @@ the client to do that check.
                 "phone_number": "+27848118111"
             }
         }
+
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
         
 ### Verifying a user [PUT /user/verify]
 
@@ -290,6 +311,13 @@ action of verifying the user.
             }
         }
         
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+        
 ### Blocking a user [PUT /user/block]
 
 This endpoint enables the moderation team or any client to block a user based on phone number.
@@ -337,6 +365,13 @@ This endpoint enables the moderation team or any client to block a user based on
             }
         }
         
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+        
 ## Status Resource [/status]
 
 ### Fetching credits available [GET /status/credits]
@@ -369,5 +404,12 @@ buying new credits if the threshold is below a certain point.
                 "credits_available": 500,
                 "min_threshold": 1000
             }
+        }
+        
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
         }
 
