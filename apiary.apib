@@ -246,20 +246,26 @@ action of verifying the user.
 
         {
             "status": 400,
-            "message": "Missing required field (atlas_user_id|phone_number|verification_code)|User cannot be verified (with reason)"
+            "message": "Missing required field (atlas_user_id|phone_number|verification_code)"
         }
         
 + Response 406 (application/json)
 
         {
             "status": 406,
-            "message": "This number is not valid|The code is not valid",
+            "message": "This number is not valid | The code is not valid | User cannot be verified (with reason)",
             "data": {
                 "phone_number": "27848118111 (Formatted)"
             }
         }
-        
-        
+
++ Response 404 (application/json)
+
+        {
+            "status": 404,
+            "message": "User doesn't exist!"
+        }
+
 + Response 401 (application/json)
 
         {
