@@ -320,6 +320,13 @@ This endpoint enables the moderation team or any client to block a user based on
             }
         }
         
++ Response 404 (application/json)
+
+        {
+            "status": 404,
+            "message": "User doesn't exist!"
+        }
+        
 + Response 401 (application/json)
 
         {
