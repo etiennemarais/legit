@@ -1,0 +1,42 @@
+{
+    "name": "olxssafrica/legit",
+    "description": "Legit is a simple service for easy Atlas user verification via a unique user identifier.",
+    "keywords": ["mobile verification", "legit", "api"],
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/lumen-framework": "5.2.*",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "~2.1",
+        "etiennemarais/outline-laravel": "^0.3"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
+            "if ! [[ -d ext/drafter ]]; then git clone --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+            "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
+            "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
+            "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
+        ],
+        "post-update-cmd": [
+            "php artisan outline:regenerate",
+            "phpunit"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+            "Legit\\": "src/Legit"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/",
+            "database/"
+        ]
+    }
+}
