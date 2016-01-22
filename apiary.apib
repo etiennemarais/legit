@@ -1,11 +1,11 @@
 # Legit
 
-Legit is a simple service for easy Atlas user verification via a unique user identifier.
+Legit is a simple service for easy client(eg. Atlas) user verification via a unique user identifier.
 
 
 # Code [/code]
 
-## Sending a code [GET /code/send?phone_number=27848118111&atlas_user_id=101]
+## Sending a code [GET /code/send?phone_number=27848118111&client_user_id=101]
 
 To be able to verify a user's mobile number, we need to be able to send their phone number a code 
 that they can fill in to verify. This endpoint sends the code generated on the server to the user's 
@@ -14,11 +14,11 @@ phone number.
 + Parameters
     + phone_number (string, required)
 
-        `user_mobile` of the atlas user in the format 27848118111
+        `user_mobile` of the clients user in the format 27848118111
 
-    + atlas_user_id (string, required)
+    + client_user_id (string, required)
 
-        `user_id` of the atlas user 
+        `user_id` of the clients user 
             
 + Request
 
@@ -46,7 +46,7 @@ phone number.
 
         {
             "status": 400,
-            "message": "Missing required field (atlas_user_id|phone_number)"
+            "message": "Missing required field (client_user_id|phone_number)"
         }
         
 + Response 406 (application/json)
@@ -67,7 +67,7 @@ phone number.
             "message": "Invalid API Key"
         }
    
-## Resending a code [GET /code/resend?phone_number=27848118111&atlas_user_id=101]
+## Resending a code [GET /code/resend?phone_number=27848118111&client_user_id=101]
 
 Resending a code is an explicit endpoint that deals with resending a verification code and 
 deals with retries and responding to failres in sending, errors and network problems. 
@@ -75,11 +75,11 @@ deals with retries and responding to failres in sending, errors and network prob
 + Parameters
     + phone_number (string, required)
 
-        `user_mobile` of the atlas user in the format 27848118111
+        `user_mobile` of the clients user in the format 27848118111
 
-    + atlas_user_id (string, required)
+    + client_user_id (string, required)
 
-        `user_id` of the atlas user
+        `user_id` of the clients user
             
 + Request
 
@@ -107,7 +107,7 @@ deals with retries and responding to failres in sending, errors and network prob
 
         {
             "status": 400,
-            "message": "Missing required field (atlas_user_id|phone_number)"
+            "message": "Missing required field (client_user_id|phone_number)"
         }
         
 + Response 406 (application/json)
@@ -141,7 +141,7 @@ deals with retries and responding to failres in sending, errors and network prob
         
 # Verification [/verification]
 
-## Checking if a phone number is verified [GET /verification/check?phone_number=27848118111&atlas_user_id=101]
+## Checking if a phone number is verified [GET /verification/check?phone_number=27848118111&client_user_id=101]
 
 The app needs to be able to check if a phone number is verified with a phone number and this endpoint enables
 the client to do that check.
@@ -149,11 +149,11 @@ the client to do that check.
 + Parameters
     + phone_number (string, required)
 
-        `user_mobile` of the atlas user in the format 27848118111
+        `user_mobile` of the clients user in the format 27848118111
 
-    + atlas_user_id (string, required)
+    + client_user_id (string, required)
 
-        `user_id` of the atlas user
+        `user_id` of the clients user
             
 + Request
 
@@ -168,7 +168,7 @@ the client to do that check.
             "status": 200,
             "message": "This phone number is verified",
             "data": {
-                "atlas_user_id": "12345",
+                "client_user_id": "12345",
                 "phone_number": "27848118111"   
             }
         }
@@ -177,7 +177,7 @@ the client to do that check.
 
         {
             "status": 400,
-            "message": "Missing required field (atlas_user_id|phone_number)"
+            "message": "Missing required field (client_user_id|phone_number)"
         }
         
 + Response 403 (application/json)
@@ -186,7 +186,7 @@ the client to do that check.
             "status": 403,
             "message": "This phone number is not verified",
             "data": {
-                "atlas_user_id": "12345",
+                "client_user_id": "12345",
                 "phone_number": "27848118111"   
             }
         }
@@ -225,7 +225,7 @@ action of verifying the phone number for a country.
     + Body
 
             {
-                "atlas_user_id": "12345",
+                "client_user_id": "12345",
                 "phone_number": "27848118111",
                 "verification_code": "1061"
             }
@@ -236,7 +236,7 @@ action of verifying the phone number for a country.
             "status": 200,
             "message": "Phone number verified",
             "data": {
-                "atlas_user_id": "12345",
+                "client_user_id": "12345",
                 "phone_number": "27848118111",
                 "verification_status": "verified"
             }
@@ -246,7 +246,7 @@ action of verifying the phone number for a country.
 
         {
             "status": 400,
-            "message": "Missing required field (atlas_user_id|phone_number|verification_code)"
+            "message": "Missing required field (client_user_id|phone_number|verification_code)"
         }
         
 + Response 406 (application/json)
@@ -287,7 +287,7 @@ This endpoint enables the moderation team or any client to block a user based on
     + Body
 
             {
-                "atlas_user_id": "12345",
+                "client_user_id": "12345",
                 "phone_number": "27848118111"
             }
             
@@ -297,7 +297,7 @@ This endpoint enables the moderation team or any client to block a user based on
             "status": 200,
             "message": "User blocked",
             "data": {
-                "atlas_user_id": "12345",
+                "fra_user_id": "12345",
                 "phone_number": "27848118111"   
             }
         }
@@ -306,7 +306,7 @@ This endpoint enables the moderation team or any client to block a user based on
 
         {
             "status": 400,
-            "message": "Missing required field (atlas_user_id|phone_number)"
+            "message": "Missing required field (client_user_id|phone_number)"
         }
         
 + Response 406 (application/json)
@@ -376,9 +376,9 @@ buying new credits if the threshold is below a certain point.
 
 # Data Structures
 
-## User
+## Verification
 + id: 1 (number, required)
-+ atlas_user_id: 1 (number, required)
++ client_user_id: 1 (number, required)
 + country_id: 1 (number, required)
 + phone_number: 27848118111 (string, required)
 + verification_status: `unverified, awaiting verification, verified, blocked, failed` (enum, required)
