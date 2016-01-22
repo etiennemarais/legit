@@ -139,11 +139,11 @@ deals with retries and responding to failres in sending, errors and network prob
             "message": "Invalid API Key"
         }
         
-# User [/user]
+# Verification [/verification]
 
-## Checking if a user is verified [GET /user/check?phone_number=27848118111&atlas_user_id=101]
+## Checking if a phone number is verified [GET /verification/check?phone_number=27848118111&atlas_user_id=101]
 
-The app needs to be able to check if a user is verified with a phone number and this endpoint enables
+The app needs to be able to check if a phone number is verified with a phone number and this endpoint enables
 the client to do that check.
 
 + Parameters
@@ -166,7 +166,7 @@ the client to do that check.
 
         {
             "status": 200,
-            "message": "User's phone number is verified",
+            "message": "This phone number is verified",
             "data": {
                 "atlas_user_id": "12345",
                 "phone_number": "27848118111"   
@@ -184,7 +184,7 @@ the client to do that check.
 
         {
             "status": 403,
-            "message": "User's phone number is not verified",
+            "message": "This phone number is not verified",
             "data": {
                 "atlas_user_id": "12345",
                 "phone_number": "27848118111"   
@@ -195,7 +195,7 @@ the client to do that check.
 
         {
             "status": 406,
-            "message": "This number is not valid",
+            "message": "This phone number is not valid",
             "data": {
                 "required_format": "<required format for country>",
                 "phone_number": "27848118111"
@@ -209,10 +209,10 @@ the client to do that check.
             "message": "Invalid API Key"
         }
         
-## Verifying a user [PUT /user/verify]
+## Verifying a phone number [PUT /verification/verify]
 
-This endpoint accepts the verification code that was sent to the user's mobile phone and does the 
-action of verifying the user.
+This endpoint accepts the verification code that was sent to the mobile phone and does the 
+action of verifying the phone number for a country.
 
 
 + Request (application/json)
@@ -234,7 +234,7 @@ action of verifying the user.
 
         {
             "status": 200,
-            "message": "User phone number verified",
+            "message": "Phone number verified",
             "data": {
                 "atlas_user_id": "12345",
                 "phone_number": "27848118111",
@@ -253,7 +253,7 @@ action of verifying the user.
 
         {
             "status": 406,
-            "message": "This number is not valid | The code is not valid | User cannot be verified (with reason)",
+            "message": "This phone number is not valid | The code is not valid | Phone number cannot be verified (with reason)",
             "data": {
                 "phone_number": "27848118111 (Formatted)"
             }
@@ -263,7 +263,7 @@ action of verifying the user.
 
         {
             "status": 404,
-            "message": "User doesn't exist!"
+            "message": "Phone number doesn't exist!"
         }
 
 + Response 401 (application/json)
@@ -273,7 +273,7 @@ action of verifying the user.
             "message": "Invalid API Key"
         }
         
-## Blocking a user [PUT /user/block]
+## Blocking a user [PUT /verification/block]
 
 This endpoint enables the moderation team or any client to block a user based on phone number.
 
@@ -313,7 +313,7 @@ This endpoint enables the moderation team or any client to block a user based on
 
         {
             "status": 406,
-            "message": "This number is not valid | User is already blocked",
+            "message": "This phone number is not valid | Phone number is already blocked",
             "data": {
                 "phone_number": "27848118111 (Formatted)"
             }
