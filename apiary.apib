@@ -5,26 +5,24 @@ Legit is a simple service for easy client(eg. Atlas) user verification via a uni
 
 # Code [/code]
 
-## Sending a code [GET /code/send?phone_number=27848118111&client_user_id=101]
+## Sending a code [POST /code/send]
 
 To be able to verify a user's mobile number, we need to be able to send their phone number a code 
 that they can fill in to verify. This endpoint sends the code generated on the server to the user's 
 phone number.
-
-+ Parameters
-    + phone_number (string, required)
-
-        `user_mobile` of the clients user in the format 27848118111
-
-    + client_user_id (string, required)
-
-        `user_id` of the clients user 
             
-+ Request
++ Request (application/json)
 
     + Headers
     
             X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "27848118111"
+            }
             
 
 + Response 200 (application/json)
@@ -41,51 +39,99 @@ phone number.
                 }
             }
         }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "phone_number": "27848118111"
+            }
  
 + Response 400 (application/json)
 
         {
             "status": 400,
-            "message": "Missing required field (client_user_id|phone_number)"
+            "message": "Missing required field (client_user_id)"
         }
         
-+ Response 406 (application/json)
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345"
+            }
+ 
++ Response 400 (application/json)
 
         {
-            "status": 406,
-            "message": "This number is not valid",
-            "data": {
-                "required_format": "<required format for country>",
-                "phone_number": "27848118111"
-            }
+            "status": 400,
+            "message": "Missing required field (phone_number)"
         }
         
+        
++ Request (application/json)
+
+    + Headers
+    
+            token: badToken
+            
 + Response 401 (application/json)
 
         {
             "status": 401,
             "message": "Invalid API Key"
         }
-   
-## Resending a code [GET /code/resend?phone_number=27848118111&client_user_id=101]
-
-Resending a code is an explicit endpoint that deals with resending a verification code and 
-deals with retries and responding to failres in sending, errors and network problems. 
-
-+ Parameters
-    + phone_number (string, required)
-
-        `user_mobile` of the clients user in the format 27848118111
-
-    + client_user_id (string, required)
-
-        `user_id` of the clients user
-            
-+ Request
+        
++ Request (application/json)
 
     + Headers
     
             X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "someBadNumber"
+            }
+        
++ Response 406 (application/json)
+
+        {
+            "status": 406,
+            "message": "This number is not valid for the <REGION> region.",
+            "data": {
+                "required_format": "<required format for country>"
+            }
+        }
+   
+## Resending a code [POST /code/resend]
+
+Resending a code is an explicit endpoint that deals with resending a verification code and 
+deals with retries and responding to failures in sending, errors and network problems. 
+            
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "27848118111"
+            }
             
 
 + Response 200 (application/json)
@@ -103,23 +149,93 @@ deals with retries and responding to failres in sending, errors and network prob
             }
         }
         
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "phone_number": "27848118111"
+            }
+ 
 + Response 400 (application/json)
 
         {
             "status": 400,
-            "message": "Missing required field (client_user_id|phone_number)"
+            "message": "Missing required field (client_user_id)"
         }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345"
+            }
+ 
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (phone_number)"
+        }
+        
+        
++ Request (application/json)
+
+    + Headers
+    
+            token: badToken
+            
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "someBadNumber"
+            }
         
 + Response 406 (application/json)
 
         {
             "status": 406,
-            "message": "This number is not valid",
+            "message": "This number is not valid for the <REGION> region.",
             "data": {
-                "required_format": "<required format for country>",
-                "phone_number": "27848118111"
+                "required_format": "<required format for country>"
             }
         }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "27848118111"
+            }
         
 + Response 412 (application/json)
 
@@ -132,30 +248,19 @@ deals with retries and responding to failres in sending, errors and network prob
             }
         }
         
-+ Response 401 (application/json)
-
-        {
-            "status": 401,
-            "message": "Invalid API Key"
-        }
-        
 # Verification [/verification]
 
-## Checking if a phone number is verified [GET /verification/check?phone_number=27848118111&client_user_id=101]
+## Verification check [GET /verification/check?phone_number={phone_number}&client_user_id={client_user_id}]
 
 The app needs to be able to check if a phone number is verified with a phone number and this endpoint enables
 the client to do that check.
 
 + Parameters
-    + phone_number (string, required)
 
-        `user_mobile` of the clients user in the format 27848118111
-
-    + client_user_id (string, required)
-
-        `user_id` of the clients user
+    + phone_number (string, required) - The client phone number
+    + client_user_id (integer, required) - The client identifier
             
-+ Request
++ Request (application/json)
 
     + Headers
     
@@ -179,6 +284,19 @@ the client to do that check.
             "status": 400,
             "message": "Missing required field (client_user_id|phone_number)"
         }
+ 
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: badApiKey
+            
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
         
 + Response 403 (application/json)
 
@@ -200,13 +318,6 @@ the client to do that check.
                 "required_format": "<required format for country>",
                 "phone_number": "27848118111"
             }
-        }
-
-+ Response 401 (application/json)
-
-        {
-            "status": 401,
-            "message": "Invalid API Key"
         }
         
 ## Verifying a phone number [PUT /verification/verify]
@@ -242,13 +353,128 @@ action of verifying the phone number for a country.
             }
         }
         
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "phone_number": "27848118111",
+                "verification_code": "1061"
+            }
+            
 + Response 400 (application/json)
 
         {
             "status": 400,
-            "message": "Missing required field (client_user_id|phone_number|verification_code)"
+            "message": "Missing required field (client_user_id)"
         }
         
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "verification_code": "1061"
+            }
+            
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (phone_number)"
+        }
+            
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "27848118111"
+            }
+            
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (verification_code)"
+        }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: badApiKey
+        
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "27848118111",
+                "verification_code": "1061"
+            }        
+
++ Response 404 (application/json)
+
+        {
+            "status": 404,
+            "message": "Phone number doesn't exist!",
+            "data": {
+                "source": "Clickatell",
+                "message": "Failed by clickatell",
+                "error": {
+                    "code": "(114|121|122|128)",
+                    "message": "(Cannot route message|Destination mobile number blocked|Destination mobile opted out|Number delisted)"
+                }
+            }
+        }
+ 
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "badNumber",
+                "verification_code": "badCode"
+            }        
+       
 + Response 406 (application/json)
 
         {
@@ -259,19 +485,6 @@ action of verifying the phone number for a country.
             }
         }
 
-+ Response 404 (application/json)
-
-        {
-            "status": 404,
-            "message": "Phone number doesn't exist!"
-        }
-
-+ Response 401 (application/json)
-
-        {
-            "status": 401,
-            "message": "Invalid API Key"
-        }
         
 ## Blocking a phone number [PUT /verification/block]
 
@@ -297,17 +510,78 @@ This endpoint enables the moderation team or any client to block a user based on
             "status": 200,
             "message": "User blocked",
             "data": {
-                "fra_user_id": "12345",
+                "client_user_id": "12345",
                 "phone_number": "27848118111"   
             }
         }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "phone_number": "27848118111"
+            }
         
 + Response 400 (application/json)
 
         {
             "status": 400,
-            "message": "Missing required field (client_user_id|phone_number)"
+            "message": "Missing required field (client_user_id)"
         }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "client_user_id": "12345"
+            }
+        
++ Response 400 (application/json)
+
+        {
+            "status": 400,
+            "message": "Missing required field (phone_number)"
+        }
+ 
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: badApiKey
+            
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+        
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <API_KEY>
+            
+            
+    + Body
+
+            {
+                "client_user_id": "12345",
+                "phone_number": "badNumber",
+                "verification_code": "badCode"
+            }       
         
 + Response 406 (application/json)
 
@@ -318,20 +592,7 @@ This endpoint enables the moderation team or any client to block a user based on
                 "phone_number": "27848118111 (Formatted)"
             }
         }
-        
-+ Response 404 (application/json)
 
-        {
-            "status": 404,
-            "message": "User doesn't exist!"
-        }
-        
-+ Response 401 (application/json)
-
-        {
-            "status": 401,
-            "message": "Invalid API Key"
-        }
         
 # Status [/status]
 
@@ -340,7 +601,7 @@ This endpoint enables the moderation team or any client to block a user based on
 Returns the available credits and does the action of stating whether there is action required of 
 buying new credits if the threshold is below a certain point.
             
-+ Request
++ Request (application/json)
 
     + Headers
     
@@ -356,6 +617,25 @@ buying new credits if the threshold is below a certain point.
             }
         }
         
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: badAdminApiKey
+        
++ Response 401 (application/json)
+
+        {
+            "status": 401,
+            "message": "Invalid API Key"
+        }
+ 
++ Request (application/json)
+
+    + Headers
+    
+            X-Auth-Token: <ADMIN_API_KEY>
+            
 + Response 402 (application/json)
 
         {
@@ -365,13 +645,6 @@ buying new credits if the threshold is below a certain point.
                 "credits_available": 500,
                 "min_threshold": 1000
             }
-        }
-        
-+ Response 401 (application/json)
-
-        {
-            "status": 401,
-            "message": "Invalid API Key"
         }
 
 # Data Structures
