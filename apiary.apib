@@ -1,3 +1,6 @@
+version: v1
+uri_prefix: /api/v1 
+
 # Legit
 
 Legit is a simple service for easy client(eg. Atlas) user verification via a unique user identifier.
@@ -57,25 +60,6 @@ phone number.
         {
             "status": 400,
             "message": "Missing required field (client_user_id)"
-        }
-        
-+ Request (application/json)
-
-    + Headers
-    
-            X-Auth-Token: <API_KEY>
-            
-    + Body
-
-            {
-                "client_user_id": "12345"
-            }
- 
-+ Response 400 (application/json)
-
-        {
-            "status": 400,
-            "message": "Missing required field (phone_number)"
         }
         
         
@@ -166,25 +150,6 @@ deals with retries and responding to failures in sending, errors and network pro
         {
             "status": 400,
             "message": "Missing required field (client_user_id)"
-        }
-        
-+ Request (application/json)
-
-    + Headers
-    
-            X-Auth-Token: <API_KEY>
-            
-    + Body
-
-            {
-                "client_user_id": "12345"
-            }
- 
-+ Response 400 (application/json)
-
-        {
-            "status": 400,
-            "message": "Missing required field (phone_number)"
         }
         
         
@@ -375,47 +340,6 @@ action of verifying the phone number for a country.
             "message": "Missing required field (client_user_id)"
         }
         
-+ Request (application/json)
-
-    + Headers
-    
-            X-Auth-Token: <API_KEY>
-            
-            
-    + Body
-
-            {
-                "client_user_id": "12345",
-                "verification_code": "1061"
-            }
-            
-+ Response 400 (application/json)
-
-        {
-            "status": 400,
-            "message": "Missing required field (phone_number)"
-        }
-            
-+ Request (application/json)
-
-    + Headers
-    
-            X-Auth-Token: <API_KEY>
-            
-            
-    + Body
-
-            {
-                "client_user_id": "12345",
-                "phone_number": "27848118111"
-            }
-            
-+ Response 400 (application/json)
-
-        {
-            "status": 400,
-            "message": "Missing required field (verification_code)"
-        }
         
 + Request (application/json)
 
@@ -533,26 +457,6 @@ This endpoint enables the moderation team or any client to block a user based on
         {
             "status": 400,
             "message": "Missing required field (client_user_id)"
-        }
-        
-+ Request (application/json)
-
-    + Headers
-    
-            X-Auth-Token: <API_KEY>
-            
-            
-    + Body
-
-            {
-                "client_user_id": "12345"
-            }
-        
-+ Response 400 (application/json)
-
-        {
-            "status": 400,
-            "message": "Missing required field (phone_number)"
         }
  
 + Request (application/json)
