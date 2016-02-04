@@ -18,7 +18,7 @@ phone number.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -47,7 +47,7 @@ phone number.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -67,7 +67,7 @@ phone number.
 
     + Headers
     
-            token: badToken
+            Authorization: Token WrongApiKey1234
             
 + Response 401 (application/json)
 
@@ -80,7 +80,7 @@ phone number.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -108,7 +108,7 @@ deals with retries and responding to failures in sending, errors and network pro
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -137,7 +137,7 @@ deals with retries and responding to failures in sending, errors and network pro
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -157,7 +157,7 @@ deals with retries and responding to failures in sending, errors and network pro
 
     + Headers
     
-            token: badToken
+            Authorization: Token WrongApiKey1234
             
 + Response 401 (application/json)
 
@@ -170,7 +170,7 @@ deals with retries and responding to failures in sending, errors and network pro
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -193,7 +193,7 @@ deals with retries and responding to failures in sending, errors and network pro
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
     + Body
 
@@ -229,7 +229,7 @@ the client to do that check.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
 
 + Response 200 (application/json)
@@ -242,7 +242,14 @@ the client to do that check.
                 "phone_number": "27848118111"   
             }
         }
-        
+      
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Token TestApiKey1234
+            
+            
 + Response 400 (application/json)
 
         {
@@ -254,7 +261,7 @@ the client to do that check.
 
     + Headers
     
-            X-Auth-Token: badApiKey
+            Authorization: Token WrongApiKey1234
             
 + Response 401 (application/json)
 
@@ -262,7 +269,14 @@ the client to do that check.
             "status": 401,
             "message": "Invalid API Key"
         }
-        
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Token TestApiKey1234
+            
+            
 + Response 403 (application/json)
 
         {
@@ -273,7 +287,14 @@ the client to do that check.
                 "phone_number": "27848118111"   
             }
         }
-        
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Token TestApiKey1234
+            
+            
 + Response 406 (application/json)
 
         {
@@ -295,7 +316,7 @@ action of verifying the phone number for a country.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -323,7 +344,7 @@ action of verifying the phone number for a country.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -345,7 +366,7 @@ action of verifying the phone number for a country.
 
     + Headers
     
-            X-Auth-Token: badApiKey
+            Authorization: Token WrongApiKey1234
         
 + Response 401 (application/json)
 
@@ -358,7 +379,7 @@ action of verifying the phone number for a country.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -388,7 +409,7 @@ action of verifying the phone number for a country.
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -418,7 +439,7 @@ This endpoint enables the moderation team or any client to block a user based on
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -443,7 +464,7 @@ This endpoint enables the moderation team or any client to block a user based on
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -463,7 +484,7 @@ This endpoint enables the moderation team or any client to block a user based on
 
     + Headers
     
-            X-Auth-Token: badApiKey
+            Authorization: Token WrongApiKey1234
             
 + Response 401 (application/json)
 
@@ -476,7 +497,7 @@ This endpoint enables the moderation team or any client to block a user based on
 
     + Headers
     
-            X-Auth-Token: <API_KEY>
+            Authorization: Token TestApiKey1234
             
             
     + Body
@@ -509,7 +530,7 @@ buying new credits if the threshold is below a certain point.
 
     + Headers
     
-            X-Auth-Token: <ADMIN_API_KEY>
+            Authorization: Token AdminApiKey1234
             
 + Response 200 (application/json)
 
@@ -525,7 +546,7 @@ buying new credits if the threshold is below a certain point.
 
     + Headers
     
-            X-Auth-Token: badAdminApiKey
+            Authorization: Token WrongAdminApiKey1234
         
 + Response 401 (application/json)
 
@@ -538,7 +559,7 @@ buying new credits if the threshold is below a certain point.
 
     + Headers
     
-            X-Auth-Token: <ADMIN_API_KEY>
+            Authorization: Token AdminApiKey1234
             
 + Response 402 (application/json)
 
