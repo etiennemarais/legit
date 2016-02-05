@@ -11,6 +11,9 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+$app->group(['prefix' => 'api/v1'/*, 'middleware' => 'auth'*/], function () use ($app) {
+    $app->get('/', ['uses' => 'App\Http\Controllers\ApiController@index']);
 });
+
+# Catch all
+$app->get('/', ['uses' => 'ApiController@welcome']);

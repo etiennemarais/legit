@@ -6,7 +6,10 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/lumen-framework": "5.2.*",
-        "vlucas/phpdotenv": "~2.2"
+        "vlucas/phpdotenv": "~2.2",
+        "ellipsesynergie/api-response": "^0.10.1",
+        "barryvdh/laravel-cors": "0.7.x",
+        "erusev/parsedown": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -36,8 +39,7 @@
             "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
         ],
         "post-update-cmd": [
-            "php artisan outline:regenerate",
-            "phpunit"
+            "php artisan outline:regenerate"
         ]
     }
 }
