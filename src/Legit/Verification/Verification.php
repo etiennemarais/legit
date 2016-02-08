@@ -17,7 +17,6 @@ class Verification extends Model
 
     public static $rules = [
         'client_user_id' => 'required',
-        'country_id' => 'required',
         'phone_number' => 'required',
     ];
 
