@@ -7,18 +7,15 @@
         "php": ">=5.5.9",
         "laravel/lumen-framework": "5.2.*",
         "vlucas/phpdotenv": "~2.2",
-        "ellipsesynergie/api-response": "~0.12",
         "barryvdh/laravel-cors": "0.7.x",
         "erusev/parsedown": "^1.6",
         "arcturial/clickatell": "~2.1",
-        "league/fractal": "~0.13",
         "olx-ssafrica/validate": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1",
-        "etiennemarais/outline-laravel": "^0.4"
+        "phpspec/phpspec": "~2.1"
     },
     "autoload": {
         "psr-4": {
@@ -31,18 +28,6 @@
         "classmap": [
             "tests/",
             "database/"
-        ]
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-            "if ! [[ -d ext/drafter ]]; then git clone --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
-            "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
-            "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
-            "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
-        ],
-        "post-update-cmd": [
-            "php artisan outline:regenerate"
         ]
     },
     "repositories": [

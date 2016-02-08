@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0057ca65c436c5c810795271a83eac21",
-    "content-hash": "41d7ff92c2fcf747e37a45f05eb49b6c",
+    "hash": "92172596fc608621fb0f370db0cb61f3",
+    "content-hash": "452b8a4e0441c0a63160a2f38b78c8cd",
     "packages": [
         {
             "name": "arcturial/clickatell",
@@ -213,66 +213,6 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
-        },
-        {
-            "name": "ellipsesynergie/api-response",
-            "version": "0.12.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ellipsesynergie/api-response.git",
-                "reference": "936880febe40c40d583038d09233679aade9271d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ellipsesynergie/api-response/zipball/936880febe40c40d583038d09233679aade9271d",
-                "reference": "936880febe40c40d583038d09233679aade9271d",
-                "shasum": ""
-            },
-            "require": {
-                "league/fractal": "0.13.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "illuminate/contracts": "~5.0",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.13-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "EllipseSynergie\\ApiResponse\\": "src",
-                    "EllipseSynergie\\ApiResponse\\Tests\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Beaudoin",
-                    "email": "maxime.beaudoin@ellipse-synergie.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Phil Sturgeon",
-                    "email": "email@philsturgeon.co.uk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Simple package to handle response properly in your API",
-            "homepage": "https://github.com/ellipsesynergie/api-response",
-            "keywords": [
-                "api",
-                "fractal",
-                "json"
-            ],
-            "time": "2016-01-28 14:11:47"
         },
         {
             "name": "erusev/parsedown",
@@ -1562,69 +1502,6 @@
             "time": "2016-01-22 18:36:46"
         },
         {
-            "name": "league/fractal",
-            "version": "0.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "3caeefbad51bce7a06947321938128512f42346c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/3caeefbad51bce7a06947321938128512f42346c",
-                "reference": "3caeefbad51bce7a06947321938128512f42346c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "illuminate/contracts": "~5.0",
-                "mockery/mockery": "~0.9",
-                "pagerfanta/pagerfanta": "~1.0.0",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~1.5",
-                "zendframework/zend-paginator": "~2.3"
-            },
-            "suggest": {
-                "illuminate/pagination": "The Illuminate Pagination component.",
-                "pagerfanta/pagerfanta": "Pagerfanta Paginator",
-                "zendframework/zend-paginator": "Zend Framework Paginator"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.13-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Fractal\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Phil Sturgeon",
-                    "email": "me@philsturgeon.uk",
-                    "homepage": "http://philsturgeon.uk/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Handle the output of complex data structures ready for API output.",
-            "homepage": "http://fractal.thephpleague.com/",
-            "keywords": [
-                "api",
-                "json",
-                "league",
-                "rest"
-            ],
-            "time": "2015-10-07 14:48:58"
-        },
-        {
             "name": "monolog/monolog",
             "version": "1.17.2",
             "source": {
@@ -2877,96 +2754,6 @@
             "time": "2015-06-14 21:17:01"
         },
         {
-            "name": "etiennemarais/outline",
-            "version": "0.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/etiennemarais/outline.git",
-                "reference": "ccdba1010a365328cc22fcefbd4c61518ac393f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/etiennemarais/outline/zipball/ccdba1010a365328cc22fcefbd4c61518ac393f1",
-                "reference": "ccdba1010a365328cc22fcefbd4c61518ac393f1",
-                "shasum": ""
-            },
-            "require": {
-                "hmaus/drafter-php": "2.*",
-                "php": "5.6.*"
-            },
-            "require-dev": {
-                "fzaninotto/faker": "~1.4",
-                "illuminate/support": "~5.2",
-                "mockery/mockery": "0.9.*",
-                "phpspec/phpspec": "~2.1",
-                "phpunit/phpunit": "~4.0",
-                "symfony/var-dumper": "~3.0"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "Outline\\": "src/Outline"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Etienne Marais",
-                    "email": "hello@etiennemarais.co.za",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Parse and generate API Blueprint markdown into Feature/Acceptance tests.",
-            "keywords": [
-                "TDD",
-                "api",
-                "blueprint",
-                "fixtures",
-                "generated docs",
-                "specification"
-            ],
-            "time": "2016-02-04 15:01:30"
-        },
-        {
-            "name": "etiennemarais/outline-laravel",
-            "version": "0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/etiennemarais/outline-laravel.git",
-                "reference": "1adca0588a8c2f8840a8d40c0e51187afcca10c5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/etiennemarais/outline-laravel/zipball/1adca0588a8c2f8840a8d40c0e51187afcca10c5",
-                "reference": "1adca0588a8c2f8840a8d40c0e51187afcca10c5",
-                "shasum": ""
-            },
-            "require": {
-                "etiennemarais/outline": "0.2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "OutlineLaravel\\": "src/OutlineLaravel/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Etienne Marais",
-                    "email": "hello@etiennemarais.co.za"
-                }
-            ],
-            "description": "Service provider for outline test generator",
-            "time": "2016-02-04 15:04:16"
-        },
-        {
             "name": "fzaninotto/faker",
             "version": "v1.5.0",
             "source": {
@@ -3017,48 +2804,6 @@
                 "fixtures"
             ],
             "time": "2015-05-29 06:29:14"
-        },
-        {
-            "name": "hmaus/drafter-php",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hendrikmaus/drafter-php.git",
-                "reference": "bc2038e313e305d5b5899bb742dc99a5e86b43b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hendrikmaus/drafter-php/zipball/bc2038e313e305d5b5899bb742dc99a5e86b43b7",
-                "reference": "bc2038e313e305d5b5899bb742dc99a5e86b43b7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6",
-                "symfony/process": "~2.7|~3.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "~0.1",
-                "codegyre/robo": "~0.5",
-                "phpunit/phpunit": "~5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DrafterPhp\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hendrik Maus",
-                    "email": "aidentailor@gmail.com"
-                }
-            ],
-            "description": "PHP wrapper around drafter binary",
-            "time": "2015-11-07 11:58:02"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
