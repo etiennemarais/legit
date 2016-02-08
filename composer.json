@@ -11,7 +11,8 @@
         "barryvdh/laravel-cors": "0.7.x",
         "erusev/parsedown": "^1.6",
         "arcturial/clickatell": "~2.1",
-        "league/fractal": "~0.13"
+        "league/fractal": "~0.13",
+        "olx-ssafrica/validate": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -43,5 +44,11 @@
         "post-update-cmd": [
             "php artisan outline:regenerate"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/olx-ssafrica/validate.git"
+        }
+    ]
 }
