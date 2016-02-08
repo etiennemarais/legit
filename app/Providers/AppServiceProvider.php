@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Infrastructure\TenantScope\TenantScope;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('Infrastructure\TenantScope\TenantScope', function ($app) {
+            return new TenantScope();
+        });
     }
 }

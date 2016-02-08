@@ -8,3 +8,12 @@ $factory->define(Legit\Verification\Verification::class, function ($faker) {
         'verification_status' => 'unverified',
     ];
 });
+
+$factory->define(Legit\Countries\Country::class, function($faker) {
+    return [
+        'country_code' => 'olxug',
+        'country_iso' => 'UG',
+        'api_key' => 'apikeyuganda',
+        'status' => 'enabled',
+    ];
+});

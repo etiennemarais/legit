@@ -23,14 +23,13 @@ $app->singleton(Illuminate\Contracts\Console\Kernel::class, App\Console\Kernel::
      'auth' => App\Http\Middleware\Authenticate::class,
  ]);
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 //if (env('APP_ENV') === 'local') {
 //    $app->register(\OutlineLaravel\OutlineLaravelServiceProvider::class);
 //}
 
 # Service Providers
+$app->register(App\Providers\AppServiceProvider::class);
 $app->register(\Barryvdh\Cors\LumenServiceProvider::class);
 $app->configure('cors');
 

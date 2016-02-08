@@ -2,9 +2,12 @@
 namespace Legit\Verification;
 
 use Illuminate\Database\Eloquent\Model;
+use Infrastructure\Traits\MultiTenantScopable;
 
 class Verification extends Model
 {
+    use MultiTenantScopable;
+
     protected $table = 'verification';
     public $timestamps = false;
 
