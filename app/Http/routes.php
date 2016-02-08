@@ -8,4 +8,4 @@ $app->group(['prefix' => 'api/v1', 'middleware' => 'auth'], function () use ($ap
 });
 
 # Catch all
-$app->get('/', ['uses' => 'ApiController@welcome']);
+$app->get('/', ['uses' => 'ApiController@welcome', 'middleware' => 'auth']);

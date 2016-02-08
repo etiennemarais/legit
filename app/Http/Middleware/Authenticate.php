@@ -30,7 +30,7 @@ class Authenticate
 
         $country = $this->repository->findWithApiKey($authHeader);
 
-        # Checks the APi key against the country and the auth header exists
+        # Checks the API key against the country and the auth header exists
         if ($authHeader && $country) {
             // Add the multi-tenant country identifier
             app('Infrastructure\TenantScope\TenantScope')->addTenant('country_id', $country->id);

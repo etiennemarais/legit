@@ -24,11 +24,11 @@ class ApiController extends Controller
      */
     public function index()
     {
-        return $this->response()->withArray([
+        return response()->json([
             'status' => 200,
             'message' => 'Legit is a simple service for easy client(eg. Atlas) user verification via a unique user identifier.',
             'data' => $this->getEndpoints(),
-        ]);
+        ], 200);
     }
 
     /**
