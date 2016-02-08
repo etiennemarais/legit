@@ -4,9 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1b62bd3c66e607bc18c18601ad077525",
-    "content-hash": "ae4feba4339fc26de9cbfb4d6feea988",
+    "hash": "f79cc02e1c2d45d2f442d38b6743b6d3",
+    "content-hash": "1a785fca393e257f59287a0a9f7ba78e",
     "packages": [
+        {
+            "name": "arcturial/clickatell",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/arcturial/clickatell.git",
+                "reference": "16cef224805e5266c2fcdb61a75d3d88dd9cc853"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/arcturial/clickatell/zipball/16cef224805e5266c2fcdb61a75d3d88dd9cc853",
+                "reference": "16cef224805e5266c2fcdb61a75d3d88dd9cc853",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "suggest": {
+                "symfony/config": "For usage with the Symfony Framework",
+                "symfony/dependency-injection": "For usage with the Symfony Framework",
+                "symfony/http-kernel": "For usage with the Symfony Framework"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Clickatell\\": [
+                        "src",
+                        "test"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU General Public License"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Brand",
+                    "email": "webmaster@cainsvault.com"
+                }
+            ],
+            "description": "Standalone PHP library to integrate with the Clickatell SMS gateway",
+            "homepage": "http://www.cainsvault.com",
+            "time": "2015-10-10 09:40:24"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "0.2.1",
@@ -168,20 +216,20 @@
         },
         {
             "name": "ellipsesynergie/api-response",
-            "version": "0.10.1",
+            "version": "0.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ellipsesynergie/api-response.git",
-                "reference": "ba2dec0a5499cf4441a58dbc62c5ae9f91c62f6d"
+                "reference": "936880febe40c40d583038d09233679aade9271d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ellipsesynergie/api-response/zipball/ba2dec0a5499cf4441a58dbc62c5ae9f91c62f6d",
-                "reference": "ba2dec0a5499cf4441a58dbc62c5ae9f91c62f6d",
+                "url": "https://api.github.com/repos/ellipsesynergie/api-response/zipball/936880febe40c40d583038d09233679aade9271d",
+                "reference": "936880febe40c40d583038d09233679aade9271d",
                 "shasum": ""
             },
             "require": {
-                "league/fractal": "0.12.*",
+                "league/fractal": "0.13.*",
                 "php": ">=5.4.0"
             },
             "require-dev": {
@@ -192,7 +240,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.11-dev"
+                    "dev-master": "0.13-dev"
                 }
             },
             "autoload": {
@@ -224,7 +272,7 @@
                 "fractal",
                 "json"
             ],
-            "time": "2015-09-23 18:25:39"
+            "time": "2016-01-28 14:11:47"
         },
         {
             "name": "erusev/parsedown",
@@ -1452,16 +1500,16 @@
         },
         {
             "name": "league/fractal",
-            "version": "0.12.0",
+            "version": "0.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/fractal.git",
-                "reference": "0a51dcb6398dc2377d086210d0624996a1df8322"
+                "reference": "3caeefbad51bce7a06947321938128512f42346c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/0a51dcb6398dc2377d086210d0624996a1df8322",
-                "reference": "0a51dcb6398dc2377d086210d0624996a1df8322",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/3caeefbad51bce7a06947321938128512f42346c",
+                "reference": "3caeefbad51bce7a06947321938128512f42346c",
                 "shasum": ""
             },
             "require": {
@@ -1511,7 +1559,7 @@
                 "league",
                 "rest"
             ],
-            "time": "2015-03-19 15:16:43"
+            "time": "2015-10-07 14:48:58"
         },
         {
             "name": "monolog/monolog",
@@ -1726,16 +1774,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.1.6",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "e6f80ab77885151908d0ec743689ca700886e8b0"
+                "reference": "b0e69d10852716b2ccbdff69c75c477637220790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/e6f80ab77885151908d0ec743689ca700886e8b0",
-                "reference": "e6f80ab77885151908d0ec743689ca700886e8b0",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b0e69d10852716b2ccbdff69c75c477637220790",
+                "reference": "b0e69d10852716b2ccbdff69c75c477637220790",
                 "shasum": ""
             },
             "require": {
@@ -1770,7 +1818,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-01-29 16:19:52"
+            "time": "2016-02-06 03:52:05"
         },
         {
             "name": "psr/log",
