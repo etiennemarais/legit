@@ -1,19 +1,10 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
-$factory->define(App\User::class, function ($faker) {
+$factory->define(Legit\Verification\Verification::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'client_user_id' => 1,
+        'country_id' => 1,
+        'phone_number' => $faker->phoneNumber,
+        'verification_status' => 'unverified',
     ];
 });
