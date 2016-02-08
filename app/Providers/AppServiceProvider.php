@@ -17,5 +17,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('Infrastructure\TenantScope\TenantScope', function ($app) {
             return new TenantScope();
         });
+
+        // TODO Register custom validation here
+        // public function extend($rule, $extension, $message = null)
     }
 }

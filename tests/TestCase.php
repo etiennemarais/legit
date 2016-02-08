@@ -15,4 +15,9 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
 
         return require __DIR__.'/../bootstrap/app.php';
     }
+
+    protected function turnOffMiddleware()
+    {
+        $this->app->instance('middleware.disable', true);
+    }
 }
