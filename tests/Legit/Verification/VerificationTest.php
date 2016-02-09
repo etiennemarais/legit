@@ -93,4 +93,16 @@ class VerificationTest extends TestCase
 
         $this->assertResponseStatus(200);
     }
+
+    public function testVerificationCheck_ReturnsPhoneNumberValidationErrors()
+    {
+        $this->get('api/v1/verification/check?phone_number=8484811811&client_user_id=1')
+            ->seeJsonEquals([
+                "status" => 406,
+                "message" => "The phone number is not the correct format for ZA,"
+                    . " The phone number must be at least 11 characters.",
+            ]);
+
+        $this->assertResponseStatus(406);
+    }
 }
