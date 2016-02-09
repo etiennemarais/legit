@@ -30,11 +30,9 @@ class Authenticate
 
         $country = $this->repository->findWithApiKey($authHeader);
 
-        # Checks the API key against the country and the auth header exists
+        // Checks the API key against the country and the auth header exists
         if ($authHeader && $country) {
-            // Add the multi-tenant country identifier
-            app('Infrastructure\TenantScope\TenantScope')->addTenant('country_id', $country->id);
-
+            $this->addMultitenantIdentifier($country);
             return $next($request);
         }
 
@@ -50,5 +48,13 @@ class Authenticate
             "status" => 401,
             "message" => "Invalid API Key",
         ], 401);
+    }
+
+    /**
+     * @param $country
+     */
+    protected function addMultitenantIdentifier($country)
+    {
+        app('Infrastructure\TenantScope\TenantScope')->addTenant('country_id', $country->id);
     }
 }

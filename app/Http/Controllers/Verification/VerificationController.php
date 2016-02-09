@@ -10,11 +10,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class VerificationController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param VerificationRepository $repository
+     * @return Response
+     */
     public function check(Request $request, VerificationRepository $repository)
     {
         $validator = Validator::make($request->all(), Verification::$rules);
 
-        // 406 This phone number is not valid
+        // TODO 406 This phone number is not valid, add validator extension
 
         if ($validator->fails()) {
             $message = $this->getMessageFromValidator($validator);
