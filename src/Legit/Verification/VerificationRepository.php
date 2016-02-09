@@ -20,9 +20,10 @@ class VerificationRepository extends Repository
      */
     public function isPhoneNumberVerified($phoneNumber, $clientUserId)
     {
-        $verified = $this->model
-            ->where(['phone_number' => $phoneNumber, 'client_user_id' => $clientUserId])
-            ->first();
+        $verified = $this->model->where([
+            'phone_number' => $phoneNumber,
+            'client_user_id' => $clientUserId]
+        )->first();
 
         return ($verified->verification_status === 'verified');
     }
