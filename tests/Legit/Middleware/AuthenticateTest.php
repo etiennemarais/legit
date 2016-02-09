@@ -61,6 +61,7 @@ class AuthenticateTest extends TestCase
 
         $country = Mockery::mock('Country');
         $country->id = 1;
+        $country->country_iso = 'TZ';
 
         $this->countriesRepository->shouldReceive('findWithApiKey')
             ->once()

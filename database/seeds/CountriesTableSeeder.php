@@ -12,9 +12,9 @@ class CountriesTableSeeder extends Seeder
     public function run()
     {
         factory(\Legit\Countries\Country::class)->create([
-            'country_code' => 'olxug',
-            'country_iso' => 'UG',
-            'api_key' => 'apikeyuganda',
+            'country_code' => 'olxza',
+            'country_iso' => 'ZA',
+            'api_key' => 'apikeysouthafrica',
             'status' => 'enabled',
         ]);
     }

@@ -19,12 +19,8 @@ class VerificationController extends Controller
     {
         $validator = Validator::make($request->all(), Verification::$rules);
 
-        // TODO 406 This phone number is not valid, add validator extension
-
         if ($validator->fails()) {
-            $message = $this->getMessageFromValidator($validator);
-
-            return $this->respondWithMissingField($message);
+            return $this->respondWithErrorMessage($validator);
         }
 
         $phoneNumber = $request->input('phone_number');

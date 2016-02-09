@@ -20,4 +20,17 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
     {
         $this->app->instance('middleware.disable', true);
     }
+
+    /**
+     * @param $class
+     * @return Mockery\MockInterface
+     */
+    protected function mock($class)
+    {
+        $mock = Mockery::mock($class);
+
+        $this->app->instance($class, $mock);
+
+        return $mock;
+    }
 }

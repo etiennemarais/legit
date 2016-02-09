@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class VerificationTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('CountriesTableSeeder');
-        $this->call('VerificationTableSeeder');
+        factory(\Legit\Verification\Verification::class)->create();
     }
 }

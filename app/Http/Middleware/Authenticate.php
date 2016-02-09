@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Config;
 use Legit\Countries\CountriesRepository;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -56,5 +57,6 @@ class Authenticate
     protected function addMultitenantIdentifier($country)
     {
         app('Infrastructure\TenantScope\TenantScope')->addTenant('country_id', $country->id);
+        Config::set('country_iso', $country->country_iso);
     }
 }

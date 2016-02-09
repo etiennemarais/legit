@@ -10,7 +10,7 @@
         "barryvdh/laravel-cors": "0.7.x",
         "erusev/parsedown": "^1.6",
         "arcturial/clickatell": "~2.1",
-        "olx-ssafrica/validate": "~1.1"
+        "giggsey/libphonenumber-for-php": "^7.2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

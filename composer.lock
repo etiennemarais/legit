@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fb2796456d74ac76a964c8ef3a71f618",
-    "content-hash": "5a051274408af073f467d593e68e68bd",
+    "hash": "03d3cbdf25df1aaf405f771ef9d3cb4f",
+    "content-hash": "c8c672cfefbbd422d581527bf7455df7",
     "packages": [
         {
             "name": "arcturial/clickatell",
@@ -1713,52 +1713,6 @@
             "time": "2015-12-20 19:50:12"
         },
         {
-            "name": "olx-ssafrica/validate",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:olx-ssafrica/validate.git",
-                "reference": "8122b88df51b0c1860180fb10160ea09e22bc9aa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/olx-ssafrica/validate/zipball/8122b88df51b0c1860180fb10160ea09e22bc9aa",
-                "reference": "8122b88df51b0c1860180fb10160ea09e22bc9aa",
-                "shasum": ""
-            },
-            "require": {
-                "giggsey/libphonenumber-for-php": "^7.2.3",
-                "php": ">=5.5.9",
-                "vlucas/valitron": "~1.2"
-            },
-            "require-dev": {
-                "illuminate/support": "~5.2",
-                "phpspec/phpspec": "~2.1",
-                "symfony/var-dumper": "~3.0"
-            },
-            "type": "project",
-            "autoload": {
-                "psr-4": {
-                    "naspersclassifieds\\regional\\olxssa\\validate\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "classmap": [
-                    "tests/"
-                ]
-            },
-            "description": "Library to wrap and validate input data for atlas",
-            "keywords": [
-                "input",
-                "validation"
-            ],
-            "support": {
-                "source": "https://github.com/olx-ssafrica/validate/tree/v1.1.0",
-                "issues": "https://github.com/olx-ssafrica/validate/issues"
-            },
-            "time": "2016-01-29 07:44:16"
-        },
-        {
             "name": "paragonie/random_compat",
             "version": "v1.2.0",
             "source": {
@@ -2650,52 +2604,6 @@
                 "environment"
             ],
             "time": "2015-12-29 15:10:30"
-        },
-        {
-            "name": "vlucas/valitron",
-            "version": "v1.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vlucas/valitron.git",
-                "reference": "d2b63c611980bb804d17468bf0b3c8d4e28afbf5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/valitron/zipball/d2b63c611980bb804d17468bf0b3c8d4e28afbf5",
-                "reference": "d2b63c611980bb804d17468bf0b3c8d4e28afbf5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Valitron": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Vance Lucas",
-                    "email": "vance@vancelucas.com",
-                    "homepage": "http://www.vancelucas.com"
-                }
-            ],
-            "description": "Simple, elegant, stand-alone validation library with NO dependencies",
-            "homepage": "http://github.com/vlucas/valitron",
-            "keywords": [
-                "valid",
-                "validation",
-                "validator"
-            ],
-            "time": "2015-12-15 20:10:29"
         }
     ],
     "packages-dev": [
