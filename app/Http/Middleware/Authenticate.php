@@ -3,42 +3,60 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Support\Facades\Config;
+use Legit\Countries\CountriesRepository;
+use Symfony\Component\HttpFoundation\Response;
 
 class Authenticate
 {
-    /**
-     * The authentication guard factory instance.
-     *
-     * @var \Illuminate\Contracts\Auth\Factory
-     */
-    protected $auth;
+    private $repository;
 
     /**
-     * Create a new middleware instance.
-     *
-     * @param  \Illuminate\Contracts\Auth\Factory  $auth
-     * @return void
+     * @param CountriesRepository $repository
      */
-    public function __construct(Auth $auth)
+    public function __construct(CountriesRepository $repository)
     {
-        $this->auth = $auth;
+        $this->repository = $repository;
     }
 
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
-     * @return mixed
+     * @param $request
+     * @param Closure $next
+     * @return Response
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+        $authHeader = $request->header('Authorization');
+        $authHeader = str_replace('Token ', '', $authHeader);
+
+        $country = $this->repository->findWithApiKey($authHeader);
+
+        // Checks the API key against the country and the auth header exists
+        if ($authHeader && $country) {
+            $this->addMultitenantIdentifier($country);
+            return $next($request);
         }
 
-        return $next($request);
+        return $this->returnWithInvalidApiKey();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function returnWithInvalidApiKey()
+    {
+        return response()->json([
+            "status" => 401,
+            "message" => "Invalid API Key",
+        ], 401);
+    }
+
+    /**
+     * @param $country
+     */
+    protected function addMultitenantIdentifier($country)
+    {
+        app('Infrastructure\TenantScope\TenantScope')->addTenant('country_id', $country->id);
+        Config::set('country_iso', $country->country_iso);
     }
 }

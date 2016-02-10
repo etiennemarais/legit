@@ -2,30 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use EllipseSynergie\ApiResponse\Laravel\Response;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use Symfony\Component\HttpFoundation\Response;
 
 class Controller extends BaseController
 {
     /**
-     * @var Response
+     * @param $message
+     * @return Response
      */
-    private $response;
-
-    /**
-     * Controller constructor.
-     * @param Response $response
-     */
-    public function __construct(Response $response)
+    protected function respondWithMissingField($message)
     {
-        $this->response = $response;
+        return response()->json([
+            'status' => 400,
+            'message' => $message,
+        ], 400);
     }
 
     /**
+     * @param $message
      * @return Response
      */
-    protected function response()
+    private function respondWithValidationError($message)
     {
-        return $this->response;
+        return response()->json([
+            'status' => 406,
+            'message' => $message,
+        ], 406);
+    }
+
+    /**
+     * @param $validator
+     * @return Response
+     */
+    protected function respondWithErrorMessage($validator)
+    {
+        $required = $messages = [];
+        $validatorMessages = $validator->errors()->toArray();
+        foreach($validatorMessages as $field => $message) {
+            if (strpos($message[0], 'required')) {
+                $required[] = $field;
+            }
+
+            foreach ($message as $error) {
+                $messages[] = $error;
+            }
+        }
+
+        if (count($required) > 0) {
+            $fields = implode(', ', $required);
+            $message = "Missing required fields $fields";
+
+            return $this->respondWithMissingField($message);
+        }
+
+
+        return $this->respondWithValidationError(implode(', ', $messages));
     }
 }
