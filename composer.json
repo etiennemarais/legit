@@ -10,7 +10,8 @@
         "barryvdh/laravel-cors": "0.7.x",
         "erusev/parsedown": "^1.6",
         "arcturial/clickatell": "~2.1",
-        "giggsey/libphonenumber-for-php": "^7.2.3"
+        "giggsey/libphonenumber-for-php": "^7.2.3",
+        "laravelcollective/bus": "~5.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -30,6 +31,14 @@
         "classmap": [
             "tests/",
             "database/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
         ]
     },
     "repositories": [
