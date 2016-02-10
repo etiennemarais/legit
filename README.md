@@ -1,5 +1,6 @@
 # legit
 
+[http://docs.legit.apiary.io/](http://docs.legit.apiary.io/)
 
 ## Installation
 
