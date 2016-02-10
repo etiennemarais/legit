@@ -42,6 +42,8 @@ class TestCase extends Laravel\Lumen\Testing\TestCase
     protected function setupCountryDependency()
     {
         factory(\Legit\Countries\Country::class)->create();
+        // Set the testing country tenant identifier.
+        app('Infrastructure\TenantScope\TenantScope')->addTenant('country_id', 1);
         Config::set('country_iso', 'ZA');
     }
 }

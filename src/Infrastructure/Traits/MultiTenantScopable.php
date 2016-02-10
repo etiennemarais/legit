@@ -10,7 +10,7 @@ trait MultiTenantScopable
 {
     public $tenantDefaultField = 'country_id';
 
-    public static function bootEngineScopable()
+    public static function bootMultiTenantScopable()
     {
         $tenantScope = App::make('Infrastructure\TenantScope\TenantScope');
 
