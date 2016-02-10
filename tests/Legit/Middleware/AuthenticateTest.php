@@ -28,7 +28,10 @@ class AuthenticateTest extends TestCase
 
     public function testInitialize_ReturnsInstanceOfAuthenticateMiddleware()
     {
-        $this->assertInstanceOf('App\Http\Middleware\Authenticate', $this->authMiddleware);
+        $this->assertInstanceOf(
+            App\Http\Middleware\Authenticate::class,
+            $this->authMiddleware
+        );
     }
 
     public function testHandle_ReturnsUnauthorizedResponse()
