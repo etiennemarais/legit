@@ -26,7 +26,10 @@ class VerificationController extends Controller
         $phoneNumber = $request->input('phone_number');
         $clientUserId = $request->input('client_user_id');
 
-        $isVerified = $repository->isPhoneNumberVerified($phoneNumber, $clientUserId);
+        $isVerified = $repository->isPhoneNumberVerified([
+            'phone_number' => $phoneNumber,
+            'client_user_id' => $clientUserId,
+        ]);
 
         return ($isVerified)
             ? $this->respondWithVerified($phoneNumber, $clientUserId)

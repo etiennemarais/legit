@@ -6,6 +6,7 @@ use App\Jobs\Code\SendCodeJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Legit\Verification\Verification;
+use Legit\Verification\VerificationRepository;
 use Symfony\Component\HttpFoundation\Response;
 
 class CodeController extends Controller
@@ -14,7 +15,7 @@ class CodeController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function send(Request $request)
+    public function send(Request $request, VerificationRepository $repository)
     {
         $validator = Validator::make($request->all(), Verification::$rules);
 
@@ -22,12 +23,10 @@ class CodeController extends Controller
             return $this->respondWithErrorMessage($validator);
         }
 
-        $phoneNumber = $request->input('phone_number');
-        $clientUserId = $request->input('client_user_id');
-
-        // Get Verification object for phone_number+client
-
-        $verification = new Verification();
+        $verification = $repository->findWithAttributes([
+            'phone_number' => $request->input('phone_number'),
+            'client_user_id' => $request->input('client_user_id'),
+        ]);
 
         // Dispatch SendJob with that model and new expiry date
         $this->dispatchFrom(SendCodeJob::class, $verification);

@@ -17,11 +17,6 @@ class Code extends Model
         'code',
     ];
 
-//    public static $rules = [
-//        'client_user_id' => 'required',
-//        'phone_number' => 'required|region|min:11',
-//    ];
-
     public $readable = 'Code';
 
     /**

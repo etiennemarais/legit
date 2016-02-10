@@ -31,9 +31,10 @@ class VerificationRepositoryTest extends TestCase
     public function testIsPhoneNumberVerified_ReturnsFalseOnUnverifiedNewNumber()
     {
         // Straight call, will add it to the DB as unverified
-        $this->assertFalse($this->repository->isPhoneNumberVerified(
-            '27848118111', 1
-        ));
+        $this->assertFalse($this->repository->isPhoneNumberVerified([
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+        ]));
     }
 
     public function testIsPhoneNumberVerified_ReturnsFalseOnUnverifiedExistingNumber()
@@ -44,9 +45,10 @@ class VerificationRepositoryTest extends TestCase
             'verification_status' => 'unverified',
         ]);
         // Straight call, Already added to the db, not verified
-        $this->assertFalse($this->repository->isPhoneNumberVerified(
-            '27848118112', 1
-        ));
+        $this->assertFalse($this->repository->isPhoneNumberVerified([
+            'phone_number' => '27848118112',
+            'client_user_id' => 1,
+        ]));
     }
 
     public function testIsPhoneNumberVerified_ReturnsTrueOnVerifiedNumber()
@@ -58,8 +60,9 @@ class VerificationRepositoryTest extends TestCase
             'verification_status' => 'verified',
         ]);
         // Straight call, Already added to the db, not verified
-        $this->assertTrue($this->repository->isPhoneNumberVerified(
-            '27848118113', 1
-        ));
+        $this->assertTrue($this->repository->isPhoneNumberVerified([
+            'phone_number' => '27848118113',
+            'client_user_id' => 1,
+        ]));
     }
 }

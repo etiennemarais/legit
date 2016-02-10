@@ -1,6 +1,7 @@
 <?php
 namespace Legit\Verification;
 
+use Illuminate\Database\Eloquent\Model;
 use Legit\Repository;
 
 class VerificationRepository extends Repository
@@ -14,25 +15,46 @@ class VerificationRepository extends Repository
     }
 
     /**
-     * @param string $phoneNumber
-     * @param string $clientUserId
+     * @param array $attributes
      * @return boolean
      */
-    public function isPhoneNumberVerified($phoneNumber, $clientUserId)
+    public function isPhoneNumberVerified(array $attributes)
     {
-        $verified = $this->model->where([
-            'phone_number' => $phoneNumber,
-            'client_user_id' => $clientUserId
-        ])->first();
+        $verified = parent::findWithAttributes($attributes);
 
         if (is_null($verified)) {
-            $verified = $this->model->create([
-                'phone_number' => $phoneNumber,
-                'client_user_id' => $clientUserId,
-                'verification_status' => 'unverified',
-            ]);
+            $verified = $this->createIfNotExists($attributes);
         }
 
         return ($verified->verification_status === 'verified');
+    }
+
+    /**
+     * @param array $attributes
+     * @return Model
+     */
+    public function findWithAttributes(array $attributes)
+    {
+        $verification = parent::findWithAttributes($attributes);
+
+        if (is_null($verification)) {
+            $verification = $this->createIfNotExists($attributes);
+        }
+
+        return $verification;
+    }
+
+    /**
+     * @param array $attributes
+     * @return static
+     */
+    private function createIfNotExists(array $attributes)
+    {
+        $verification = $this->model->create(
+            array_merge($attributes, [
+                'verification_status' => 'unverified',
+            ])
+        );
+        return $verification;
     }
 }

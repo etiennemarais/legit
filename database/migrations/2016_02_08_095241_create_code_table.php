@@ -19,6 +19,7 @@ class CreateCodeTable extends Migration
             $table->unsignedBigInteger('verification_id');
             $table->string('code', 10);
             $table->timestamp('created_at');
+            $table->timestamp('expires_at');
         });
     }
 
