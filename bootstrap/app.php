@@ -30,7 +30,6 @@ $app->singleton(Illuminate\Contracts\Console\Kernel::class, App\Console\Kernel::
 
 # Service Providers
 $app->register(App\Providers\AppServiceProvider::class);
-$app->register(Collective\Bus\BusServiceProvider::class);
 $app->register(\Barryvdh\Cors\LumenServiceProvider::class);
 $app->configure('cors');
 $app->configure('app');

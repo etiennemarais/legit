@@ -13,6 +13,7 @@ class CodeController extends Controller
 {
     /**
      * @param Request $request
+     * @param VerificationRepository $repository
      * @return Response
      */
     public function send(Request $request, VerificationRepository $repository)
@@ -29,7 +30,7 @@ class CodeController extends Controller
         ]);
 
         // Dispatch SendJob with that model and new expiry date
-        $this->dispatchFrom(SendCodeJob::class, $verification);
+        $this->dispatch(new SendCodeJob($verification));
 
         // Return Success
         return 'Done';
