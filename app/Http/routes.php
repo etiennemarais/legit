@@ -5,6 +5,8 @@ $app->group(['prefix' => 'api/v1', 'middleware' => 'auth'], function () use ($ap
     $app->get('/verification/check', [
         'uses' => 'App\Http\Controllers\Verification\VerificationController@check']
     );
+
+    $app->post('/code/send', ['uses' => 'App\Http\Controllers\Code\CodeController@send']);
 });
 
 # Catch all

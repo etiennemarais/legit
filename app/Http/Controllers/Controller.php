@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Collective\Bus\BusServiceProvider;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -58,5 +59,18 @@ class Controller extends BaseController
 
 
         return $this->respondWithValidationError(implode(', ', $messages));
+    }
+
+    /**
+     * Marshal a job and dispatch it to its appropriate handler.
+     *
+     * @param $job
+     * @param \ArrayAccess $source
+     * @param array $extras
+     * @return mixed
+     */
+    protected function dispatchFrom($job, \ArrayAccess $source, $extras = [])
+    {
+        return app(BusServiceProvider::class)->dispatchFrom($job, $source, $extras);
     }
 }

@@ -15,9 +15,10 @@ class CreateCodeTable extends Migration
     {
         Schema::create('code', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('country_id');
             $table->unsignedBigInteger('verification_id');
             $table->string('code', 10);
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
     }
 

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Infrastructure\TenantScope\TenantScope;
+use Legit\Sending\Clickatell\ClickatellSendingProvider;
+use Legit\Sending\Contracts\SendingProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('Infrastructure\TenantScope\TenantScope', function ($app) {
             return new TenantScope();
         });
+
+        // Bind the sending provider
+        $this->app->bind(SendingProvider::class, ClickatellSendingProvider::class);
     }
 }
