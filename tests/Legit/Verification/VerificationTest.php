@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Config;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 
 class VerificationTest extends TestCase
@@ -12,8 +11,7 @@ class VerificationTest extends TestCase
         parent::setUp();
 
         $this->turnOffMiddleware();
-        factory(\Legit\Countries\Country::class)->create();
-        Config::set('country_iso', 'ZA');
+        $this->setupCountryDependency();
     }
 
     public function testVerificationCheck_ReturnsPhoneNumberErrorOnMissingFields()
