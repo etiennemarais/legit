@@ -9,6 +9,9 @@ class SendCodeJob extends Job
 {
     private $verification;
 
+    /**
+     * @param Verification $verification
+     */
     public function __construct(Verification $verification)
     {
         $this->verification = $verification;
@@ -22,6 +25,6 @@ class SendCodeJob extends Job
     // /*SendingProvider $sendingProvider*/
     public function handle(SendingProvider $sendingProvider)
     {
-        dump($this->verification);
+
     }
 }

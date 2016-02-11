@@ -5,6 +5,10 @@ use Illuminate\Contracts\Database\ModelIdentifier;
 
 trait SerializesDeletedModels
 {
+    /**
+     * @param mixed $value
+     * @return mixed
+     */
     protected function getRestoredPropertyValue($value)
     {
         if ($value instanceof ModelIdentifier) {
@@ -14,7 +18,6 @@ trait SerializesDeletedModels
                 return $model->withTrashed()->findOrFail($value->id);
             }
 
-            // TODO figure out why findOrFail does not work here
             return $model->findOrFail($value->id);
         } else {
             return $value;

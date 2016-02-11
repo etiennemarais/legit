@@ -53,7 +53,7 @@ trait MultiTenantScopable
      *
      * @return mixed
      */
-    public static function findOrFail($id, $columns = ['*'])
+    public function findOrFail($id, $columns = ['*'])
     {
         try {
             return parent::findOrFail($id, $columns);
