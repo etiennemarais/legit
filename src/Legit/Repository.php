@@ -15,4 +15,13 @@ class Repository
     {
         return $this->model->where($attributes)->first();
     }
+
+    /**
+     * @param array $attributes
+     * @return Model
+     */
+    public function createWithAttributes(array $attributes)
+    {
+        return $this->model->create($attributes);
+    }
 }

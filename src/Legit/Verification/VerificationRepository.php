@@ -62,11 +62,10 @@ class VerificationRepository extends Repository
      */
     private function createIfNotExists(array $attributes)
     {
-        $verification = $this->model->create(
-            array_merge($attributes, [
-                'verification_status' => 'unverified',
-            ])
-        );
-        return $verification;
+        $vars = array_merge($attributes, [
+            'verification_status' => 'unverified',
+        ]);
+
+        return $this->createWithAttributes($vars);
     }
 }

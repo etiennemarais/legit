@@ -18,7 +18,7 @@ class CreateCodeTable extends Migration
             $table->unsignedInteger('country_id');
             $table->unsignedBigInteger('verification_id');
             $table->string('code', 10);
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->timestamp('expires_at');
         });
     }

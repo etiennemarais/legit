@@ -2,6 +2,7 @@
 namespace App\Jobs\Code;
 
 use App\Jobs\Job;
+use Legit\Code\CodeRepository;
 use Legit\Sending\Contracts\SendingProvider;
 use Legit\Verification\Verification;
 
@@ -17,13 +18,19 @@ class SendCodeJob extends Job
         $this->verification = $verification;
     }
 
-    public function handle(SendingProvider $sendingProvider)
+    /**
+     * @param SendingProvider $sendingProvider
+     * @param CodeRepository $codeRepository
+     */
+    public function handle(SendingProvider $sendingProvider, CodeRepository $codeRepository)
     {
-        // Create new code with verification id link
+        $codeObject = $codeRepository->createWithAttributes([
+            'country_id' => (int)$this->verification->country_id,
+            'verification_id' => (int)$this->verification->id,
+        ]);
 
         // Send OTP using service
-        dump($sendingProvider->sendOTP($this->verification->phone_number));
-        dump($this->verification);
+        $sendingProvider->sendOTP($this->verification->phone_number, $codeObject->code);
 
         // Log based on status (success/error)
     }
