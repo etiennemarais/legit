@@ -31,7 +31,7 @@ class VerificationRepository extends Repository
 
     /**
      * @param array $attributes
-     * @return Model
+     * @return mixed
      */
     public function findWithAttributes(array $attributes)
     {
