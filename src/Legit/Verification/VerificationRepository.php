@@ -45,13 +45,15 @@ class VerificationRepository extends Repository
     }
 
     /**
+     * NOTE: $verification is passed by reference so the update would cascade back up.
+     *
      * @param Verification $verification
      * @return Verification
      */
     public function setAwaitingVerificationStatus(Verification $verification)
     {
         $verification->verification_status = 'awaiting verification';
-        return $verification->save();
+        $verification->save();
     }
 
     /**

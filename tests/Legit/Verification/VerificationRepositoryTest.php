@@ -20,6 +20,12 @@ class VerificationRepositoryTest extends TestCase
         );
     }
 
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset($this->repository);
+    }
+
     public function testIsInstantiable_ReturnsVerificationRepositoryInstance()
     {
         $this->assertInstanceOf(
@@ -64,5 +70,51 @@ class VerificationRepositoryTest extends TestCase
             'phone_number' => '27848118113',
             'client_user_id' => 1,
         ]));
+    }
+
+    public function testFindWithAttributes_ReturnsExistingModelIfFound()
+    {
+        // Create one first
+        factory(\Legit\Verification\Verification::class)->create([
+            'phone_number' => '27848118113',
+            'client_user_id' => 1,
+            'verification_status' => 'unverified',
+        ]);
+
+        $data = [
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+        ];
+
+        $verification = $this->repository->findWithAttributes($data);
+
+        $this->seeInDatabase('verification', $data);
+        $this->assertInstanceOf(\Legit\Verification\Verification::class, $verification);
+    }
+
+    public function testFindWithAttributes_ReturnsModelAfterCreatingItIfNotFound()
+    {
+        $data = [
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+        ];
+
+        $verification = $this->repository->findWithAttributes($data);
+
+        $this->seeInDatabase('verification', $data);
+        $this->assertInstanceOf(\Legit\Verification\Verification::class, $verification);
+    }
+
+    public function testSetAwaitingVerificationStatus_ReturnsUpdatedModelVerificationStatus()
+    {
+        $verification = factory(\Legit\Verification\Verification::class)->create([
+            'phone_number' => '27848118113',
+            'client_user_id' => 1,
+            'verification_status' => 'unverified',
+        ]);
+
+        $this->repository->setAwaitingVerificationStatus($verification);
+
+        $this->assertEquals('awaiting verification', $verification->verification_status);
     }
 }
