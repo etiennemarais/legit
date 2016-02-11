@@ -29,10 +29,26 @@ class CodeController extends Controller
             'client_user_id' => $request->input('client_user_id'),
         ]);
 
-        // Dispatch SendJob with that model and new expiry date
+        $repository->setAwaitingVerificationStatus($verification);
+
         $this->dispatch(new SendCodeJob($verification));
 
-        // Return Success
-        return 'Done';
+        return $this->respondWithSuccessCodeSent($verification);
+    }
+
+    /**
+     * @param Verification $verification
+     * @return mixed
+     */
+    private function respondWithSuccessCodeSent(Verification $verification)
+    {
+        return response()->json([
+            'status' => 200,
+            'message' => 'Successfully sent verification code',
+            'data' => [
+                'verification_status' => $verification->verification_status,
+                'expires_at' => 'I still need to do this part',
+            ],
+        ], 200);
     }
 }

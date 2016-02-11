@@ -45,6 +45,16 @@ class VerificationRepository extends Repository
     }
 
     /**
+     * @param Verification $verification
+     * @return Verification
+     */
+    public function setAwaitingVerificationStatus(Verification $verification)
+    {
+        $verification->verification_status = 'awaiting verification';
+        return $verification->save();
+    }
+
+    /**
      * @param array $attributes
      * @return static
      */

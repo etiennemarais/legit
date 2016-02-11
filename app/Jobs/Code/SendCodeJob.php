@@ -16,15 +16,15 @@ class SendCodeJob extends Job
     {
         $this->verification = $verification;
     }
-    // Create new code with verification id link
 
-    // Send OTP using service
-    // Update verification model to be "awaiting verification"
-
-    // Log based on status (success/error)
-    // /*SendingProvider $sendingProvider*/
     public function handle(SendingProvider $sendingProvider)
     {
+        // Create new code with verification id link
 
+        // Send OTP using service
+        dump($sendingProvider->sendOTP($this->verification->phone_number));
+        dump($this->verification);
+
+        // Log based on status (success/error)
     }
 }
