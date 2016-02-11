@@ -29,7 +29,17 @@ class AppServiceProvider extends ServiceProvider
             return new TenantScope();
         });
 
-        // Bind the sending provider
-        $this->app->bind(SendingProvider::class, ClickatellSendingProvider::class);
+        $this->app->bind(SendingProvider::class, function() {
+            switch (env('SMS_GATEWAY_DRIVER')) {
+                case 'clickatell':
+                default:
+                    return new ClickatellSendingProvider(
+                        env('SMS_GATEWAY_USER'),
+                        env('SMS_GATEWAY_PASS'),
+                        env('SMS_GATEWAY_API_ID')
+                    );
+                    break;
+            }
+        });
     }
 }
