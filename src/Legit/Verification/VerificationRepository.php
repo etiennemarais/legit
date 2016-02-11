@@ -1,7 +1,6 @@
 <?php
 namespace Legit\Verification;
 
-use Illuminate\Database\Eloquent\Model;
 use Legit\Repository;
 
 class VerificationRepository extends Repository

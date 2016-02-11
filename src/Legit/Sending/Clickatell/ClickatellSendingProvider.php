@@ -7,7 +7,7 @@ use Legit\Sending\Contracts\SendingProvider;
 class ClickatellSendingProvider implements SendingProvider
 {
     private $provider;
-    const MESSAGE = 'Please verify your number by entering this OTP: %s';
+    const MESSAGE = '%s is your code for OLX. Please enter it to verify your phone number :)';
 
     /**
      * @param string $user
