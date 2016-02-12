@@ -26,6 +26,18 @@ class AuthenticateTest extends TestCase
         );
     }
 
+    public function tearDown()
+    {
+        parent::tearDown();
+        unset(
+            $this->countriesRepository,
+            $this->request,
+            $this->multiTenantScope,
+            $this->closureNext,
+            $this->authMiddleware
+        );
+    }
+
     public function testInitialize_ReturnsInstanceOfAuthenticateMiddleware()
     {
         $this->assertInstanceOf(

@@ -3,9 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Legit\Sending\Clickatell\exceptions\ClickatellSendingException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 
@@ -33,6 +35,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        if ($e instanceof ClickatellSendingException) {
+            Log::error(ClickatellSendingException::class . ": " . $e->getMessage() . "(code:{$e->getCode()})");
+            return;
+        }
+
         parent::report($e);
     }
 
