@@ -9,4 +9,14 @@ interface SendingProvider
      * @return boolean
      */
     public function sendOTP($phoneNumber, $code);
+
+    /**
+     * @return array
+     */
+    public function getFailedQueueCodes();
+
+    /**
+     * @return array
+     */
+    public function getRetryQueueCodes();
 }
