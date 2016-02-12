@@ -2,6 +2,7 @@
 namespace App\Jobs\Code;
 
 use App\Jobs\Job;
+use Illuminate\Support\Facades\Log;
 use Legit\Code\CodeRepository;
 use Legit\Sending\Contracts\SendingProvider;
 use Legit\Verification\Verification;
@@ -33,5 +34,15 @@ class SendCodeJob extends Job
         $sendingProvider->sendOTP($this->verification->phone_number, $codeObject->code);
 
         // Log based on status (success/error)
+
+
+
+        // retry queue
+        //$this->release(env('QUEUE_RETRY_TIMEOUT'));
+    }
+
+    public function failed()
+    {
+        Log::error("Job Failed HERE again");
     }
 }
