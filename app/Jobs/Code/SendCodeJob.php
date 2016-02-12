@@ -2,6 +2,7 @@
 namespace App\Jobs\Code;
 
 use App\Jobs\Job;
+use Illuminate\Support\Facades\Log;
 use Legit\Code\CodeRepository;
 use Legit\Sending\Clickatell\exceptions\ClickatellSendingException;
 use Legit\Sending\Contracts\SendingProvider;
@@ -36,6 +37,11 @@ class SendCodeJob extends Job
 
             $this->handleException($sendingProvider, $e);
         }
+    }
+
+    public function failed()
+    {
+        Log::error(SendCodeJob::class . " failed: " . $this->verification);
     }
 
     /**

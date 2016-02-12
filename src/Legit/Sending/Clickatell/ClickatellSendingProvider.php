@@ -85,7 +85,6 @@ class ClickatellSendingProvider implements SendingProvider
                     $this->throwClickatellException($messageResponse, $errorCode);
                     break;
                 case self::SUCCESSFUL_SEND:
-                    dump("Successfull send");
                     // Do nothing, job has finished successfully :)
                     break;
             }
@@ -99,7 +98,6 @@ class ClickatellSendingProvider implements SendingProvider
      */
     protected function throwClickatellException($messageResponse, $errorCode)
     {
-        dump((string)$messageResponse->error, $errorCode);
         throw new ClickatellSendingException((string)$messageResponse->error, $errorCode);
     }
 }
