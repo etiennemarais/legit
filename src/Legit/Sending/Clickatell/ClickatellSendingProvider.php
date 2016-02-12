@@ -33,7 +33,7 @@ class ClickatellSendingProvider implements SendingProvider
     /**
      * @param string $phoneNumber
      * @param string $code
-     * @return boolean
+     * @return void
      */
     public function sendOTP($phoneNumber, $code)
     {
