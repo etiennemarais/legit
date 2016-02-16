@@ -17,4 +17,6 @@ test:
         directory:
           - "tests/"
     php_loc:
-        directory: "src", "app"
+        directory: 
+            - "app"
+            - "src"
