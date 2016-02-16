@@ -15,6 +15,7 @@ class Code extends Model
         'country_id',
         'verification_id',
         'code',
+        'expires_at',
     ];
 
     public static $rules = [

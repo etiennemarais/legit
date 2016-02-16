@@ -1,6 +1,7 @@
 <?php
 namespace Legit\Code;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Legit\Repository;
 
@@ -22,6 +23,7 @@ class CodeRepository extends Repository
     {
         $vars = array_merge([
             'code' => $this->generateToken(),
+            'expires_at' => Carbon::now()->addMinutes(10)->toDateTimeString(),
         ], $attributes);
 
         return parent::createWithAttributes($vars);
