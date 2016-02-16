@@ -117,4 +117,34 @@ class VerificationRepositoryTest extends TestCase
 
         $this->assertEquals('awaiting verification', $verification->verification_status);
     }
+
+    public function testIsValidCode_ReturnsFalseOnInvalidCode()
+    {
+        $verification = factory(\Legit\Verification\Verification::class)->create([
+            'phone_number' => '27848118113',
+            'client_user_id' => 1,
+            'verification_status' => 'unverified',
+        ]);
+
+        $this->assertFalse(
+            $this->repository->isValidCode($verification, 123)
+        );
+    }
+
+    public function testIsValidCode_ReturnsTrueOnValidCode()
+    {
+        $verification = factory(\Legit\Verification\Verification::class)->create([
+            'phone_number' => '27848118113',
+            'client_user_id' => 1,
+            'verification_status' => 'unverified',
+        ]);
+
+        factory(\Legit\Code\Code::class)->create([
+            'code' => 123456,
+        ]);
+
+        $this->assertTrue(
+            $this->repository->isValidCode($verification, 123456)
+        );
+    }
 }
