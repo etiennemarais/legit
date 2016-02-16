@@ -1,5 +1,7 @@
 build_settings:
     verbose: true
+    sqlite:
+        path: ":memory:"
     ignore:
         - "vendor"
         - "bin"
@@ -14,7 +16,5 @@ test:
             - "./phpunit.xml"
         directory:
           - "tests/"
-    php_code_sniffer:
-        standard: "PSR2"
     php_loc:
-        directory: "src"
+        directory: "src", "app"
