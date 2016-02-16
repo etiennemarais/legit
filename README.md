@@ -94,3 +94,9 @@ country you can do so in your seed files where it sets up a basic country.
 ```
 Authorization: Token apikeysouthafrica
 ```
+
+### Actual API keys for regions
+
+Setup actual API keys by running this command
+
+`php artisan key:generate --show`
