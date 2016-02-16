@@ -38,21 +38,21 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ClickatellSendingException) {
             Log::error(ClickatellSendingException::class . ": " . $e->getMessage() . " (code:{$e->getCode()})");
+            if (env('APP_ENV') !== 'testing') {
+                $options = array(
+                    'username' => 'legit-bot',
+                    'icon_emoji' => ':mushroom:',
+                    'channel' => '#legit'
+                );
+                $bot = new Slackbot(env('SLACK_WEBHOOK_URL'), $options);
+                $attachment = $bot->buildAttachment("Legit Error"/* mandatory by slack */)
+                    ->setPretext("Something went wrong trying to send an SMS with Legit")
+                    ->setText(ClickatellSendingException::class . ": " . $e->getMessage() . " (code:{$e->getCode()})")
+                    ->setColor("red");
 
-            $options = array(
-                'username' => 'legit-bot',
-                'icon_emoji' => ':mushroom:',
-                'channel' => '#legit'
-            );
-            $bot = new Slackbot(env('SLACK_WEBHOOK_URL'), $options);
-            $attachment = $bot->buildAttachment("Legit Error"/* mandatory by slack */)
-                ->setPretext("Something went wrong trying to send an SMS with Legit")
-                ->setText(ClickatellSendingException::class . ": " . $e->getMessage() . " (code:{$e->getCode()})")
-                ->setColor("red");
-
-            $bot->attach($attachment)->send();
-
-            return;
+                $bot->attach($attachment)->send();
+                return;
+            }
         }
 
         parent::report($e);
