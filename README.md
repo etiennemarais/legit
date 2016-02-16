@@ -77,6 +77,7 @@ cat > .env <<EOF
 >CACHE_DRIVER=memcached
 >QUEUE_DRIVER=database
 >QUEUE_RETRY_TIMEOUT=3
+>SLACK_WEBHOOK_URL=
 >EOF
 ```
 ```
