@@ -38,11 +38,15 @@ class Controller extends BaseController
      */
     protected function respondWithErrorMessage($validator)
     {
-        $required = $messages = [];
+        $required = $messages = $digits = [];
         $validatorMessages = $validator->errors()->toArray();
         foreach($validatorMessages as $field => $message) {
             if (strpos($message[0], 'required')) {
                 $required[] = $field;
+            }
+
+            if (strpos($message[0], 'digits')) {
+                $digits[] = $field;
             }
 
             foreach ($message as $error) {
@@ -57,6 +61,12 @@ class Controller extends BaseController
             return $this->respondWithMissingField($message);
         }
 
+        if (count($digits) > 0) {
+            $fields = implode(', ', $digits);
+            $message = "The $fields that you provided is invalid";
+
+            return $this->respondWithValidationError($message);
+        }
 
         return $this->respondWithValidationError(implode(', ', $messages));
     }

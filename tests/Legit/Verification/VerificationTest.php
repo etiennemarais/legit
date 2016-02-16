@@ -103,4 +103,107 @@ class VerificationTest extends TestCase
 
         $this->assertResponseStatus(406);
     }
+
+    public function testVerificationVerify_ReturnsPhoneNumberErrorOnMissingFields()
+    {
+        $data = [
+            'client_user_id' => 1,
+        ];
+
+        $this->post('api/v1/verification/verify', $data)
+            ->seeJsonEquals([
+                "status" => 400,
+                "message" => "Missing required fields phone_number, code"
+            ]);
+        $this->assertResponseStatus(400);
+    }
+
+    public function testVerificationVerify_ReturnsClientUserIdentifierErrorOnMissingFields()
+    {
+        $data = [
+            'phone_number' => '27848118111',
+        ];
+
+        $this->post('api/v1/verification/verify', $data)
+            ->seeJsonEquals([
+                "status" => 400,
+                "message" => "Missing required fields client_user_id, code"
+            ]);
+        $this->assertResponseStatus(400);
+    }
+
+    public function testVerificationVerify_ReturnsCodeErrorOnMissingFields()
+    {
+        $data = [
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+        ];
+
+        $this->post('api/v1/verification/verify', $data)
+            ->seeJsonEquals([
+                "status" => 400,
+                "message" => "Missing required fields code"
+            ]);
+        $this->assertResponseStatus(400);
+    }
+
+    public function testVerificationVerify_ReturnsCodeErrorOnInvalidCodeProvided()
+    {
+        $data = [
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+            'code' => 'someBadCode',
+        ];
+
+        $this->post('api/v1/verification/verify', $data)
+            ->seeJsonEquals([
+                "status" => 406,
+                "message" => "The code that you provided is invalid",
+            ]);
+        $this->assertResponseStatus(406);
+    }
+
+    public function testVerificationVerify_ReturnsNotVerifiedResponseErrorOnInvalidCodeProvided()
+    {
+        factory(\Legit\Code\Code::class)->create();
+
+        $data = [
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+            'code' => '123455', # Intentional wrong code
+        ];
+
+        $this->post('api/v1/verification/verify', $data)
+            ->seeJsonEquals([
+                'status' => 403,
+                'message' => 'This phone number is not verified',
+                'data' => [
+                    'phone_number' => '27848118111',
+                    'client_user_id' => 1,
+                ],
+            ]);
+        $this->assertResponseStatus(403);
+    }
+
+    public function testVerificationVerify_ReturnsVerifiedResponseValidCodeProvided()
+    {
+        factory(\Legit\Code\Code::class)->create();
+
+        $data = [
+            'phone_number' => '27848118111',
+            'client_user_id' => 1,
+            'code' => '123456', # Correct code
+        ];
+
+        $this->post('api/v1/verification/verify', $data)
+            ->seeJsonEquals([
+                'status' => 200,
+                'message' => 'This phone number is verified',
+                'data' => [
+                    'phone_number' => '27848118111',
+                    'client_user_id' => 1,
+                ],
+            ]);
+        $this->assertResponseStatus(200);
+    }
 }
