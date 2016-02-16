@@ -1,10 +1,12 @@
 build_settings:
+    clone_depth: 1
     verbose: true
     sqlite:
         path: ":memory:"
     ignore:
         - "vendor"
         - "bin"
+        - "tests"
 
 setup:
     composer:
@@ -17,6 +19,4 @@ test:
         directory:
           - "tests/"
     php_loc:
-        directory: 
-            - "app"
-            - "src"
+        directory: "src"
