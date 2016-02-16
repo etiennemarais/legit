@@ -17,6 +17,10 @@ class Code extends Model
         'code',
     ];
 
+    public static $rules = [
+        'code' => 'required|digits:6',
+    ];
+
     public $readable = 'Code';
 
     /**

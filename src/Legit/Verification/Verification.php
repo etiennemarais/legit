@@ -2,6 +2,7 @@
 namespace Legit\Verification;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Infrastructure\Traits\MultiTenantScopable;
 
 class Verification extends Model
@@ -24,4 +25,12 @@ class Verification extends Model
     ];
 
     public $readable = 'Verification';
+
+    /**
+     * @return HasMany
+     */
+    public function codes()
+    {
+        return $this->hasMany('Legit\Code\Code', 'verification_id', 'id');
+    }
 }

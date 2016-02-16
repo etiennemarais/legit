@@ -56,6 +56,18 @@ class VerificationRepository extends Repository
     }
 
     /**
+     * @param Verification $verification
+     * @param $code
+     * @return boolean
+     */
+    public function isValidCode(Verification $verification, $code)
+    {
+        $code = $verification->codes()->where('code', $code)->first();
+
+        return (is_null($code) ? false : true);
+    }
+
+    /**
      * @param array $attributes
      * @return static
      */
