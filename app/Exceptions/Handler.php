@@ -8,6 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Legit\Sending\Clickatell\exceptions\ClickatellSendingException;
+use lygav\slackbot\Slackbot;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 
@@ -36,7 +37,21 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         if ($e instanceof ClickatellSendingException) {
-            Log::error(ClickatellSendingException::class . ": " . $e->getMessage() . "(code:{$e->getCode()})");
+            Log::error(ClickatellSendingException::class . ": " . $e->getMessage() . " (code:{$e->getCode()})");
+
+            $options = array(
+                'username' => 'legit-bot',
+                'icon_emoji' => ':mushroom:',
+                'channel' => '#legit'
+            );
+            $bot = new Slackbot(env('SLACK_WEBHOOK_URL'), $options);
+            $attachment = $bot->buildAttachment("Legit Error"/* mandatory by slack */)
+                ->setPretext("Something went wrong trying to send an SMS with Legit")
+                ->setText(ClickatellSendingException::class . ": " . $e->getMessage() . " (code:{$e->getCode()})")
+                ->setColor("red");
+
+            $bot->attach($attachment)->send();
+
             return;
         }
 
